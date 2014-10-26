@@ -26,7 +26,7 @@ class User {
     //inloggen: controleer of de user bestaat in de database en controleer zijn rechten
 
     public function login() {
-        include 'connect.php';
+        include '..\connectivity\connect.php';
         $sql = "SELECT * FROM user WHERE firstname='$this->firstname' AND password='$this->password'";
         $result = mysqli_query($conn, $sql) or die("FOUT: " . mysql_error());
         while (list($id, $firstname, $lastname, $email, $password, $admin) = mysqli_fetch_row($result)) {
@@ -47,7 +47,7 @@ class User {
      */////////////////////////////////////////////////////////
 
     public function save() {
-        include 'connect.php';
+        include '..\connectivity\connect.php';
         $sql = "INSERT INTO user (firstname, lastname, email, password, admin) 
 			VALUES 
 			('$this->firstname','$this->lastname', '$this->email','$this->password', '$this->admin')";
@@ -57,7 +57,7 @@ class User {
 
     //alle gebruikers selecteren
     public function selectallUsersAdmin() {
-        include 'connect.php';
+        include '..\connectivity\connect.php';
         $sql = "SELECT * FROM user";
         $result = mysqli_query($conn, $sql);
         echo "<table><tr><th>Voornaam</th><th>Achternaam</th><th>Admin</th><th></th><th></th></tr>";
@@ -71,7 +71,7 @@ class User {
 
     //een gebruiker weghalen
     public function delete() {
-        include 'connect.php';
+        include '..\connectivity\connect.php';
         $sql = "DELETE FROM user WHERE id='$this->id'";
         $result = mysqli_query($conn, $sql);
         return "De User met nummer " . $this->id . " is weggehaald!";
@@ -79,7 +79,7 @@ class User {
 
     //een gebruiker veranderen
     public function update() {
-        include 'connect.php';
+        include '..\connectivity\connect.php';
         $sql = "UPDATE user SET firstname='$this->firstname', lastname='$this->lastname', email='$this->email', password='$this->password', 
 			admin='$this->admin' WHERE id='$this->id'";
         $result = mysqli_query($conn, $sql);

@@ -19,7 +19,7 @@ class Message {
     //opslaan
 
     public function save() {
-        include '..\connectivity\DbConnect.php';
+        include '..\connectivity\connect.php';
         $sql = "INSERT INTO message (title, content) VALUES ('$this->title','$this->content')";
         $result = mysqli_query($conn, $sql);
         return "De Message met titel " . $this->title . " en tekst " . $this->content . " is opgeslagen!";
@@ -27,7 +27,7 @@ class Message {
 
     //Alle berichten laten zien
     public function selectall() {
-        include '..\connectivity\DbConnect.php';
+        include '..\connectivity\connect.php';
         $sql = "SELECT * FROM message";
         $result = mysqli_query($conn, $sql);
         echo "<table><tr><th>Titel</th><th>Bericht</th><th>Bericht weergeven</th></tr>";
@@ -39,7 +39,7 @@ class Message {
 
     //Een bericht laten zien
     public function selectone() {
-        include '..\connectivity\DbConnect.php';
+        include '..\connectivity\connect.php';
         $sql = "SELECT * FROM message WHERE id='$this->id'";
         $result = mysqli_query($conn, $sql);
         echo "<table>";
@@ -56,7 +56,7 @@ class Message {
     //geef alle berichten weer inclusief de mogelijkheid om een bericht te veranderen of weg te halen
 
     public function selectallAdmin() {
-        include '..\connectivity\DbConnect.php';
+        include '..\connectivity\connect.php';
         $sql = "SELECT * FROM message";
         $result = mysqli_query($conn, $sql);
         echo "<table><tr><th>Titel</th><th>Bericht</th><th>Weergeven</th><th>Bewerken</th><th>Weghalen</th></tr>";
@@ -71,7 +71,7 @@ class Message {
 
     //Een bericht veranderen
     public function update() {
-        include '..\connectivity\DbConnect.php';
+        include '..\connectivity\connect.php';
         $sql = "UPDATE message SET title='$this->title', content='$this->content' WHERE id='$this->id'";
         $result = mysqli_query($conn, $sql);
         return "De Message met titel " . $this->title . " en tekst " . $this->content . " is opgeslagen!";
@@ -79,7 +79,7 @@ class Message {
 
     //Een bericht weghalen
     public function delete() {
-        include '..\connectivity\DbConnect.php';
+        include '..\connectivity\connect.php';
         $sql = "DELETE FROM message WHERE id='$this->id'";
         $result = mysqli_query($conn, $sql);
         return "De Message met nummer " . $this->id . " is weggehaald!";
